@@ -17,7 +17,6 @@ jobs:
       - name: Build firmware
         run: /bin/bash release.sh
 
-      # Compress .pio directory to a zip file
       - name: Compress .pio directory
         run: |
           cd .pio/libdeps/featheresp32/micro_ros_platformio/
@@ -29,21 +28,13 @@ jobs:
           file_list=$(ls -1 bin/*.bin)
           echo "FILES=$file_list" >> $GITHUB_ENV
 
-      - name: Generate RELEASE Body  
-        id: release_body  
-        run: |  
-          release_body=$(cat RELEASE.md)  
-          echo "RELEASE_BODY=$release_body" >> $GITHUB_ENV  
-   
-      # Create a release and upload release assets  
       - name: Create Release and Upload Release Asset  
         uses: softprops/action-gh-release@v1  
         if: startsWith(github.ref, 'refs/tags/')  
         with:  
           tag_name: ${{ github.ref }}  
           name: $GITHUB_REF_NAME
-          body: |
-            ${{ env.RELEASE_BODY }}  
+          body-path: release-notes.md
           draft: false  
           prerelease: false  
           files: |  

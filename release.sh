@@ -15,7 +15,5 @@ export TVERSION=$GITHUB_REF_NAME
 export TDATA=`date +%y%m%d`
 export BINNAME=`echo $TNAME`_$TVERSION.$TDATA.bin
 
-printenv
-
 esptool.py  --chip esp32 merge_bin -o bin/$BINNAME --flash_mode dio --flash_size 4MB 0x1000 .pio/build/featheresp32/bootloader.bin 0x8000 .pio/build/featheresp32/partitions.bin  0x10000 .pio/build/featheresp32/firmware.bin 
 echo "Build Finish bin/`ls bin`"

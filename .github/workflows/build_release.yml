@@ -23,11 +23,10 @@ jobs:
           cd .pio/libdeps/featheresp32/micro_ros_platformio/
           zip -r libmicroros libmicroros
 
-      # Generate a list of files in the bin directory
       - name: Generate file list for bin directory
         id: file_list
         run: |
-          file_list=$(ls -1 bin/*.bin)  # Only list .bin files in the bin directory
+          file_list=$(ls -1 bin/*.bin)
           echo "FILES=$file_list" >> $GITHUB_ENV
 
       - name: Generate RELEASE Body  

@@ -1,5 +1,17 @@
 export PATH=/usr/local/bin/:$PATH
 
+printenv
+
+# 获取完整的引用（例如：refs/tags/v1.0.0）  
+full_ref=$GITHUB_REF  
+  
+# 提取标签名（例如：v1.0.0）  
+# 注意：这里假设了 GITHUB_REF 是以 'refs/tags/' 开头的  
+tag_name=${full_ref#refs/tags/}  
+  
+echo "Current tag is: $tag_name"  
+  
+
 source /opt/ros/humble/setup.bash
 mkdir -p /github/home/.platformio/penv/bin/
 touch /github/home/.platformio/penv/bin/activate

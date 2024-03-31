@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build firmware
-        run: /bin/bash release.sh $GITHUB_REF_NAME
+        run: /bin/bash release.sh
 
       - name: Compress .pio directory
         run: |
@@ -34,7 +34,7 @@ jobs:
         with:  
           tag_name: ${{ github.ref }}  
           name: $GITHUB_REF_NAME
-          body_path: ${{ github.workspace }}/release-notes.md
+          body_path: release-notes.md
           draft: false  
           prerelease: false  
           files: |  
